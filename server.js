@@ -4,6 +4,8 @@ if(process.argv.length < 4) {
 }
 var ipAddr = process.argv[2];
 var port = process.argv[3];
+// get mac address
+var macAddr = require('getmac').default();
 
 const WebSocket = require('ws');
 var ws = null;
@@ -57,7 +59,7 @@ loadFace = () => {
 
   consumerR.on("data", (data) => {
     base64data = "data:image/png;base64," + new Buffer(data).toString('base64');
-    write(JSON.stringify({ hand: hand, image: base64data }));
+    write(JSON.stringify({ id: macAddr, image: base64data }));
   });
   consumerR.on("end", () => { 
     console.log("end");
