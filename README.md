@@ -156,7 +156,7 @@ sudo service livestream status
 ```sh
 git clone https://github.com/tejaswigowda/camera-websocket-mirror
 cd camera-websocket-mirror
-npm install ws net request mjpeg-consumer
+npm install ws net request mjpeg-consumer getmac
 node server.js <ip> <port>
 
 ```
