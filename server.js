@@ -30,7 +30,7 @@ function connectws() {
 connectws();
 
 function write(str) {
-  console.log(str);
+  //console.log(str);
     ws.send(str);
 }
 
