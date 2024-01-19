@@ -1,14 +1,15 @@
-if(process.argv.length < 3) {
-  console.log("Usage: node server.js <hand>");
+if(process.argv.length < 4) {
+  console.log("Usage: node server.js <ipAddr> <port>");
   process.exit();
 }
-var hand = process.argv[2] || "left";
+var ipAddr = process.argv[2];
+var port = process.argv[3];
 
 const WebSocket = require('ws');
 var ws = null;
 
 function connectws() {
-    ws = new WebSocket('ws://192.168.1.50:80/hub');
+    ws = new WebSocket('ws://' + ipAddr + ':' + port + '/jpgstream_server');
     ws.on('open', function open() {
         console.log("connected");
         //write("hello");
