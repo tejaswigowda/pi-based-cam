@@ -154,10 +154,10 @@ sudo service livestream status
 ### STEP 4: Send orientation data and hand image
 
 ```sh
-git clone https://github.com/Mesquite-Mocap/mm-hands-cam
-cd mm-hands-cam
-forever start -c python3 bno.py 
-node rhand.js # or lhand.js
+git clone https://github.com/tejaswigowda/camera-websocket-mirror
+cd camera-websocket-mirror
+npm install ws net request mjpeg-consumer
+node server.js <ip> <port>
 
 ```
 
@@ -166,8 +166,7 @@ node rhand.js # or lhand.js
 Put this in your `~/.bashrc`:
 
 ```sh
-cd /home/mesquite/mm-hands-cam
-node server.js right # or left, which is default
-python3 bno.py 
+cd /home/mesquite/camera-websocket-mirror
+node server.js <ip> <port>
 
 ```
