@@ -154,8 +154,8 @@ sudo service livestream status
 ### STEP 4: Send orientation data and hand image
 
 ```sh
-git clone https://github.com/tejaswigowda/pi-based-camera
-cd pi-based-camera
+git clone https://github.com/tejaswigowda/pi-based-cam
+cd pi-based-cam
 npm install ws net request mjpeg-consumer getmac
 node server.js <ip> <port>
 
@@ -166,7 +166,7 @@ node server.js <ip> <port>
 Put this in your `~/.bashrc`:
 
 ```sh
-cd /home/mesquite/pi-based-camera
+cd /home/mesquite/pi-based-cam
 node server.js <ip> <port>
 
 ```
