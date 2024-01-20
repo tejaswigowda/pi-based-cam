@@ -154,8 +154,8 @@ sudo service livestream status
 ### STEP 4: Send orientation data and hand image
 
 ```sh
-git clone https://github.com/tejaswigowda/camera-websocket-mirror
-cd camera-websocket-mirror
+git clone https://github.com/tejaswigowda/pi-based-camera
+cd pi-based-camera
 npm install ws net request mjpeg-consumer getmac
 node server.js <ip> <port>
 
@@ -166,7 +166,7 @@ node server.js <ip> <port>
 Put this in your `~/.bashrc`:
 
 ```sh
-cd /home/mesquite/camera-websocket-mirror
+cd /home/mesquite/pi-based-camera
 node server.js <ip> <port>
 
 ```
