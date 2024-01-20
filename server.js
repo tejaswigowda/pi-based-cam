@@ -6,6 +6,7 @@ var ipAddr = process.argv[2];
 var port = process.argv[3];
 // get mac address
 var macAddr = require('getmac').default();
+console.log(macAddr);
 
 const WebSocket = require('ws');
 var ws = null;
