@@ -29,9 +29,11 @@ function connectws() {
 
 connectws();
 
-function write(str) {
-  //console.log(str);
-    ws.send(str);
+function write(data) {
+  // send binary data
+  if (ws.readyState == 1) {
+    ws.send(data);
+  }
 }
 
 var request = require("request");
@@ -59,8 +61,9 @@ loadFace = () => {
     .pipe(consumerR);
 
   consumerR.on("data", (data) => {
-    base64data = "data:image/png;base64," + new Buffer(data).toString('base64');
-    write(JSON.stringify({ id: macAddr, image: base64data, raw: data }));
+   // base64data = "data:image/png;base64," + new Buffer(data).toString('base64');
+   // write(JSON.stringify({ id: macAddr, image: base64data, raw: data }));
+    write(data);
   });
   consumerR.on("end", () => { 
     console.log("end");
