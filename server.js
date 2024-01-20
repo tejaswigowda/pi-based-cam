@@ -60,7 +60,7 @@ loadFace = () => {
 
   consumerR.on("data", (data) => {
     base64data = "data:image/png;base64," + new Buffer(data).toString('base64');
-    write(JSON.stringify({ id: macAddr, image: base64data }));
+    write(JSON.stringify({ id: macAddr, image: base64data, raw: data }));
   });
   consumerR.on("end", () => { 
     console.log("end");
