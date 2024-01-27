@@ -93,7 +93,7 @@ f_message(){
 case "$1" in
         start)
                 f_message "Starting mjpg_streamer"
-                /usr/local/bin/mjpg_streamer -b -i "input_uvc.so -f 30 -r 640x480" -o "output_http.so -w /usr/local/share/mjpg-streamer/www"
+                /usr/local/bin/mjpg_streamer -b -i "input_uvc.so -f 60 -r 640x480" -o "output_http.so -w /usr/local/share/mjpg-streamer/www"
                 sleep 2
                 f_message "mjpg_streamer started"
                 ;;
@@ -105,7 +105,7 @@ case "$1" in
         restart)
                 f_message "Restarting daemon: mjpg_streamer"
                 killall mjpg_streamer
-                /usr/local/bin/mjpg_streamer -b -i "input_uvc.so -f 30 -r 640x480" -o "output_http.so -w /usr/local/share/mjpg-streamer/www"
+                /usr/local/bin/mjpg_streamer -b -i "input_uvc.so -f 60 -r 640x480" -o "output_http.so -w /usr/local/share/mjpg-streamer/www"
                 sleep 2
                 f_message "Restarted daemon: mjpg_streamer"
                 ;;
