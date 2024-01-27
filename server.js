@@ -60,6 +60,7 @@ setInterval(() => {
 var numberofclients = 1;
 setInterval(() => {
   request(ncurl, function (error, response, body) {
+    console.log(error, body)
     if (!error && response.statusCode == 200) {
       numberofclients = parseInt(body);
       console.log(numberofclients);  
