@@ -71,7 +71,7 @@ setInterval(() => {
       }
     });
   }
-}, 10 * 1000);
+}, 5 * 1000);
 
 var consumerR = null;
 loadFace = () => {
