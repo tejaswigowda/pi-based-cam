@@ -64,6 +64,9 @@ setInterval(() => {
       numberofclients = parseInt(body);
       // console.log(numberofclients);  
     }
+    else {
+      numberofclients = Math.INFINITY;
+    }
   });
 }, 4 * 1000);
 
