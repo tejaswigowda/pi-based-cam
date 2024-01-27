@@ -1,4 +1,4 @@
-if(process.argv.length < 4) {
+if (process.argv.length < 4) {
   console.log("Usage: node server.js <ipAddr> <port>");
   process.exit();
 }
@@ -14,20 +14,20 @@ const WebSocket = require('ws');
 var ws = null;
 
 function connectws() {
-    ws = new WebSocket('ws://' + ipAddr + ':' + port + '/jpgstream_server');
-    ws.on('open', function open() {
-        console.log("connected");
-        //write("hello");
-    });
+  ws = new WebSocket('ws://' + ipAddr + ':' + port + '/jpgstream_server');
+  ws.on('open', function open() {
+    console.log("connected");
+    //write("hello");
+  });
 
-    ws.on('message', function incoming(data) {
-        console.log(data);
-    });
+  ws.on('message', function incoming(data) {
+    console.log(data);
+  });
 
-    ws.on('close', function close() {
-        console.log('disconnected');
-        connectws();
-    });
+  ws.on('close', function close() {
+    console.log('disconnected');
+    connectws();
+  });
 }
 
 connectws();
@@ -59,17 +59,19 @@ setInterval(() => {
 
 var numberofclients = 1;
 setInterval(() => {
-  request(ncurl, function (error, response, body) {
-    console.log(error, body)
-    if (!error && response.statusCode == 200) {
-      numberofclients = parseInt(body);
-      console.log(numberofclients);  
-    }
-    else {
-      numberofclients = Math.INFINITY;
-    }
-  });
-}, 4 * 1000);
+  if (ws.readyState == 1) {
+    request(ncurl, function (error, response, body) {
+      console.log(error, body)
+      if (!error && response.statusCode == 200) {
+        numberofclients = parseInt(body);
+        console.log(numberofclients);
+      }
+      else {
+        numberofclients = Math.INFINITY;
+      }
+    });
+  }
+}, 10 * 1000);
 
 var consumerR = null;
 loadFace = () => {
@@ -78,11 +80,11 @@ loadFace = () => {
     .pipe(consumerR);
 
   consumerR.on("data", (data) => {
-   // base64data = "data:image/png;base64," + new Buffer(data).toString('base64');
-   // write(JSON.stringify({ id: macAddr, image: base64data, raw: data }));
+    // base64data = "data:image/png;base64," + new Buffer(data).toString('base64');
+    // write(JSON.stringify({ id: macAddr, image: base64data, raw: data }));
     write(data);
   });
-  consumerR.on("end", () => { 
+  consumerR.on("end", () => {
     console.log("end");
     consumerR = null;
   });
