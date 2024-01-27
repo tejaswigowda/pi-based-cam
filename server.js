@@ -62,7 +62,7 @@ setInterval(() => {
   request(ncurl, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       numberofclients = parseInt(body);
-      // console.log(numberofclients);  
+      console.log(numberofclients);  
     }
     else {
       numberofclients = Math.INFINITY;
