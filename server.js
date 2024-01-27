@@ -8,6 +8,8 @@ var port = process.argv[3];
 var macAddr = require('getmac').default();
 console.log(macAddr);
 
+var ncurl = "http://" + ipAddr + ":" + port + "/numberofclients";
+
 const WebSocket = require('ws');
 var ws = null;
 
@@ -32,7 +34,7 @@ connectws();
 
 function write(data) {
   // send binary data
-  if (ws.readyState == 1) {
+  if (ws.readyState == 1 && numberofclients > 0) {
     ws.send(data);
   }
 }
@@ -54,6 +56,16 @@ setInterval(() => {
     }
   }
 }, 10 * 1000);
+
+var numberofclients = 1;
+setInterval(() => {
+  request(ncurl, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      numberofclients = parseInt(body);
+      // console.log(numberofclients);  
+    }
+  });
+}, 4 * 1000);
 
 var consumerR = null;
 loadFace = () => {
