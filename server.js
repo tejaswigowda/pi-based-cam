@@ -61,10 +61,10 @@ var numberofclients = 1;
 setInterval(() => {
   if (ws.readyState == 1) {
     request(ncurl, function (error, response, body) {
-      console.log(error, body)
+      //console.log(error, body)
       if (!error && response.statusCode == 200) {
         numberofclients = parseInt(body);
-        console.log(numberofclients);
+        //console.log(numberofclients);
       }
       else {
         numberofclients = Math.INFINITY;
